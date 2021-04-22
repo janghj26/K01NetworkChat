@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.SocketException;
 
-//ㅇㅅㅇ
 //서버가 보내는 Echo메세지를 읽어오는 쓰레드 클래스
 public class Receiver extends Thread {
 
