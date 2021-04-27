@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.URLDecoder;
 
 //서버가 보내는 Echo메세지를 읽어오는 쓰레드 클래스
 public class Receiver extends Thread {
@@ -25,20 +26,21 @@ public class Receiver extends Thread {
 	
 	/*
 	run() 메소드에서는 서버가 보내는 Echo메세지를 지속적으로
-	읽어오고, 에외발생시 while루프를 탈출한다.
+	읽어오고, 예외발생시 while루프를 탈출한다.
 	 */
 	@Override
 	public void run() {
 		
 		while( in != null) {
 			try {
+				System.out.println(">>" + URLDecoder.decode(in.readLine(), "UTF-8"));
 				if(in.readLine() == null) {
 					System.out.println("중복");
 					break;
 				}
 				else {
 					
-					System.out.println("Thread Receive :" + in.readLine());//지속적으로 읽어냄
+					System.out.println("Thread Receive :" + URLDecoder.decode(in.readLine(), "UTF-8"));//지속적으로 읽어냄
 				}
 			}
 			catch(SocketException e) {

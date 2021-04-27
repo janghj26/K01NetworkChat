@@ -2,6 +2,7 @@ package chat8;
 
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.URLEncoder;
 import java.util.Scanner;
 
 //클라이언트가 입력한 메세지를 서버로 전송해주는 쓰레드 클래스
@@ -15,6 +16,7 @@ public class Sender extends Thread{
 	public Sender(Socket socket, String name) {
 		this.socket = socket;
 		try {
+			
 			out = new PrintWriter(this.socket.getOutputStream(), true);
 			this.name = name;
 		}
@@ -29,6 +31,7 @@ public class Sender extends Thread{
 		
 		try {
 			//최초로 보내는 메세지는 이름(대화명)
+			name = URLEncoder.encode(name, "UTF-8");
 			out.println(name);
 			
 			//두번째부터는 q를 입력하기전까지는 입력한 메세지를 서버로 전송한다.
@@ -39,6 +42,7 @@ public class Sender extends Thread{
 						break;
 					}
 					else {
+						s2 = URLEncoder.encode(s2, "UTF-8");
 						out.println(s2);
 					}
 				}
