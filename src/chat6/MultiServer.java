@@ -85,7 +85,8 @@ public class MultiServer {
 				clientMap.get(it.next());
 				
 				/*
-				
+				클라이언트에게 메세지를 전달할때 매개변수로 name이
+				있는경우와 없는 경우를 구분해서 전달하게 된다.
 				 */
 				if(name.equals("")) {
 					//입장, 퇴장에서 사용되는 부분
